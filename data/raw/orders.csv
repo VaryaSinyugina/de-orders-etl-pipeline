@@ -1,0 +1,4 @@
+order_id,customer_id,product_id,order_date,quantity,price
+1,101,2001,2023-01-01,2,10.5
+2,102,2002,2023-01-02,1,99.9
+3,101,2001,2023-01-03,3,10.5
