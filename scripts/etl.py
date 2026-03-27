@@ -5,11 +5,13 @@ from scripts.load import load_orders
 from scripts.quality_checks import run_quality_checks
 import os
 
-engine = create_engine("postgresql+psycopg2://de_user:12345@localhost:5432/de_first_pet_project")
+engine = create_engine(
+    f"postgresql+psycopg2://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@localhost:5432/{os.getenv('DB_NAME')}"
+)
 
 def main():
     try:
-        base_path = os.path.expanduser("~/de-first-pp")
+        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         df = extract_orders(os.path.join(base_path, "data/raw/orders.csv"))
         df = transform_orders(df)
         run_quality_checks(df)
